@@ -18,7 +18,7 @@ const TodoForm = ({ saveTodo }) => {
     setDueDate(e.target.value);
   };
 
-  const onSubmit = () => {
+  const onSubmit = (e) => {
     e.preventDefault();
     saveTodo({ title, description, due_date: dueDate });
   };
