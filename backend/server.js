@@ -7,7 +7,7 @@ const routes = require("./routes");
 main().catch((err) => console.log(err));
 
 async function main() {
-  await mongoose.connect("mongodb+srv://rumanmlk123_db_user:@f*EiC2.rRA4ZCf@cluster0.u9137br.mongodb.net/todos/?appName=Cluster0", {
+  await mongoose.connect("mongodb+srv://rumanmlk123_db_user:@f*EiC2.rRA4ZCf@cluster0.u9137br.mongodb.net/todos?appName=Cluster0", {
     useUnifiedTopology: true,
     useNewUrlParser: true,
   });
