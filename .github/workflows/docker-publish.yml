@@ -24,6 +24,7 @@ jobs:
       # This is used to complete the identity challenge
       # with sigstore/fulcio when running outside of PRs.
       id-token: write
+      deployments: write
 
     steps:
       - name: Checkout repository
@@ -129,3 +130,11 @@ jobs:
         # This step uses the identity token to provision an ephemeral certificate
         # against the sigstore community Fulcio instance.
         run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
+      
+      - name: Render Deploy Frontend
+        run: curl https://api.render.com/deploy/srv-d3ttbt49c44c73ea0h80?key=GUdiiHbPF2k
+
+      - name: Render Deploy Backend
+        run: curl https://api.render.com/deploy/srv-d3ttbt49c44c73ea0h80?key=GUdiiHbPF2k
+
+      
