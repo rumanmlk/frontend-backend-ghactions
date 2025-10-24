@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 
 const TodoForm = ({ saveTodo }) => {
@@ -19,6 +19,7 @@ const TodoForm = ({ saveTodo }) => {
   };
 
   const onSubmit = () => {
+    e.preventDefault();
     saveTodo({ title, description, due_date: dueDate });
   };
 
@@ -56,7 +57,7 @@ const TodoForm = ({ saveTodo }) => {
           onChange={onDueDateChange}
         />
       </FormGroup>
-      <Button color="primary" onClick={onSubmit}>Save</Button>
+      <Button color="primary" type="submit" onClick={onSubmit}>Save</Button>
     </Form>
   );
 };
