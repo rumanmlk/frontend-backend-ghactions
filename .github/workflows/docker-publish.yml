@@ -29,12 +29,16 @@ jobs:
       deployments: write
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: 'Create env dep file'
         run: |
           touch .env.deployment
           echo REACT_APP_API_URL="https://frontend-backend-ghactions-backend.onrender.com" >> .env.deployment
           cat .env.deployment
           more .env.deployment
+          realpath .env.deployment
 
       - name: 'Create env prod file'
         run: |
@@ -42,9 +46,8 @@ jobs:
           echo REACT_APP_API_URL="https://frontend-backend-ghactions-backend.onrender.com" >> .env.production
           cat .env.production
           more .env.production
+          realpath .env.production
 
-      - name: Checkout repository
-        uses: actions/checkout@v4
 
       # Install the cosign tool except on PR
       # https://github.com/sigstore/cosign-installer
