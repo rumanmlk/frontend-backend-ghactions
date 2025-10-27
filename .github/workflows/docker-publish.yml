@@ -96,7 +96,7 @@ jobs:
         run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
         
       - name: Render Deploy Backend
-        run: curl "${{secrets.BACKEND_HOOK}}"
+        run: curl https://api.render.com/deploy/srv-d3tomek9c44c73e71740?key=nTefl6AW10o&imgURL=docker.io%2Flibrary%2F${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}%40backend-v01
 
       ################FRONTEND####################################
 
@@ -139,7 +139,8 @@ jobs:
 
 
       - name: Render Deploy Frontend
-        run:  curl ${{secrets.FRONTEND_HOOK}}
+        run:  curl https://api.render.com/deploy/srv-d3ttbt49c44c73ea0h80?key=GUdiiHbPF2k&imgURL=docker.io%2Flibrary%2F${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}%40frontend-v01
+
 
      
 
