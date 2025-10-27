@@ -13,8 +13,8 @@ env:
   REGISTRY: docker.io
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
-  TAG_FRONTEND: frontend-v08
-  TAG_BACKEND: backend-v08
+  TAG_FRONTEND: frontend
+  TAG_BACKEND: backend
 
 jobs:
   build:
