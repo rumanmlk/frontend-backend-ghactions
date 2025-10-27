@@ -101,6 +101,19 @@ jobs:
 
       ################FRONTEND####################################
 
+
+      - name: 'Create env prod file'
+        run: |
+          touch .env.production
+          echo API_ENDPOINT="https://frontend-backend-ghactions-backend.onrender.com" >> .env.production
+          cat .env.production
+
+      - name: 'Create env dep file'
+        run: |
+          touch .env.deployment
+          echo API_ENDPOINT="https://frontend-backend-ghactions-backend.onrender.com" >> .env.deployment
+          cat .env.deployment
+
       # Extract metadata (tags, labels) for Docker
       # https://github.com/docker/metadata-action
       - name: Extract Docker frontend metadata
