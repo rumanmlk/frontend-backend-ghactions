@@ -96,7 +96,7 @@ jobs:
         run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
         
       - name: Render Deploy Backend
-        run: curl https://api.render.com/deploy/srv-d3tomek9c44c73e71740?key=nTefl6AW10o&imgURL=docker.io%2F${{env.IMAGE_NAME}}%40backendv02
+        run: curl https://api.render.com/deploy/srv-d3tomek9c44c73e71740?key=nTefl6AW10o&imgURL=docker.io/${{env.IMAGE_NAME}}:backendv02
 
 
       ################FRONTEND####################################
@@ -140,4 +140,4 @@ jobs:
 
 
       - name: Render Deploy Frontend
-        run:  curl https://api.render.com/deploy/srv-d3ttbt49c44c73ea0h80?key=GUdiiHbPF2k&imgURL=docker.io%2F${{env.IMAGE_NAME}}%40frontendv02
+        run:  curl https://api.render.com/deploy/srv-d3ttbt49c44c73ea0h80?key=GUdiiHbPF2k&imgURL=docker.io/${{env.IMAGE_NAME}}:frontendv02
