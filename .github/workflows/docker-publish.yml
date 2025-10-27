@@ -34,11 +34,11 @@ jobs:
 
       - name: 'Create env dep file'
         run: |
-          touch .env.deployment
-          echo REACT_APP_API_URL="https://frontend-backend-ghactions-backend.onrender.com" >> .env.deployment
-          cat .env.deployment
-          more .env.deployment
-          realpath .env.deployment
+          touch .env.development
+          echo REACT_APP_API_URL="https://frontend-backend-ghactions-backend.onrender.com" >> .env.development
+          cat .env.development
+          more .env.development
+          realpath .env.development
 
       - name: 'Create env prod file'
         run: |
