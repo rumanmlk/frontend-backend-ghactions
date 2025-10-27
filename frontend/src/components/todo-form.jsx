@@ -30,7 +30,7 @@ const TodoForm = ({ saveTodo }) => {
         <Input
           id="title"
           name="title"
-          placeholder="Enter a title"
+          placeholder="Enter a title for version 6"
           type="text"
           value={title}
           onChange={onTitleChange}
@@ -41,7 +41,7 @@ const TodoForm = ({ saveTodo }) => {
         <Input
           id="description"
           name="description"
-          placeholder="Enter a long n long Description for version 5"
+          placeholder="Enter a long n long Description for version 6"
           type="textarea"
           value={description}
           onChange={onDescriptionChange}
