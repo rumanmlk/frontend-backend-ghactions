@@ -34,26 +34,39 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Make dev envfile
+        uses: SpicyPizza/create-envfile@v2.0
+        with:
+          directory: ./frontend
+          file_name: .env.development
+      
+      - name: Make dev envfile
+        uses: SpicyPizza/create-envfile@v2.0
+        with:
+          directory: ./frontend
+          file_name: .env.production
 
-      - name: 'Create env dep file'
-        run: |
-          touch ./frontend/.env.development
-          echo 'REACT_APP_API_URL="https://frontend-backend-ghactions-backend.onrender.com"' > .env.development
-          cat .env.development
-          more .env.development
-          realpath .env.development
 
-      - name: 'Create env prod file'
-        run: |
-          touch ./frontend/.env.production
-          echo 'REACT_APP_API_URL="https://frontend-backend-ghactions-backend.onrender.com"' > .env.production
-          cat .env.production
-          more .env.production
-          realpath .env.production
-          realpath Dockerfile
-          more Dockerfile
-          realpath README.md
-          more README.md
+
+      # - name: 'Create env dep file'
+      #   run: |
+      #     touch ./frontend/.env.development
+      #     echo 'REACT_APP_API_URL="https://frontend-backend-ghactions-backend.onrender.com"' > .env.development
+      #     cat .env.development
+      #     more .env.development
+      #     realpath .env.development
+
+      # - name: 'Create env prod file'
+      #   run: |
+      #     touch ./frontend/.env.production
+      #     echo 'REACT_APP_API_URL="https://frontend-backend-ghactions-backend.onrender.com"' > .env.production
+      #     cat .env.production
+      #     more .env.production
+      #     realpath .env.production
+      #     realpath Dockerfile
+      #     more Dockerfile
+      #     realpath README.md
+      #     more README.md
       
         
 
