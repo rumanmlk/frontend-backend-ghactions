@@ -34,19 +34,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Make dev envfile
-        uses: SpicyPizza/create-envfile@v2.0
-        with:
-          directory: ./frontend
-          file_name: .env.development
-      
-      - name: Make dev envfile
-        uses: SpicyPizza/create-envfile@v2.0
-        with:
-          directory: ./frontend
-          file_name: .env.production
-
-
 
       # - name: 'Create env dep file'
       #   run: |
@@ -118,6 +105,9 @@ jobs:
           labels: ${{ steps.meta-backend.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          build-args: |
+            REACT_APP_API_URL=${{ env.REACT_APP_API_URL }}
+
 
       # Sign the resulting Docker image digest except on PRs.
       # This will only write to the public Rekor transparency log when the Docker
