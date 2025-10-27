@@ -48,7 +48,9 @@ jobs:
           more .env.production
           realpath .env.production
           realpath Dockerfile
-
+          more Dockerfile
+          realpath README.md
+          more README.md
 
       # Install the cosign tool except on PR
       # https://github.com/sigstore/cosign-installer
