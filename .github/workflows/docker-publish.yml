@@ -102,6 +102,13 @@ jobs:
       ################FRONTEND####################################
 
 
+      - name: 'Create env dep file'
+        run: |
+          touch .env.deployment
+          echo REACT_APP_API_URL="https://frontend-backend-ghactions-backend.onrender.com" >> .env.deployment
+          cat .env.deployment
+          more .env.deployment
+
       - name: 'Create env prod file'
         run: |
           touch .env.production
@@ -109,11 +116,6 @@ jobs:
           cat .env.production
           more .env.production
 
-      - name: 'Create env dep file'
-        run: |
-          touch .env.deployment
-          echo REACT_APP_API_URL="https://frontend-backend-ghactions-backend.onrender.com" >> .env.deployment
-          cat .env.deployment
 
       # Extract metadata (tags, labels) for Docker
       # https://github.com/docker/metadata-action
