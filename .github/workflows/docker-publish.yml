@@ -132,9 +132,13 @@ jobs:
         run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
       
       - name: Render Deploy Frontend
-        run: curl https://api.render.com/deploy/srv-d3ttbt49c44c73ea0h80?key=GUdiiHbPF2k
+        run: 
+          echo "https://frontend-backend-ghactions-frontend.onrender.com"
+          curl https://api.render.com/deploy/srv-d3ttbt49c44c73ea0h80?key=GUdiiHbPF2k
 
       - name: Render Deploy Backend
-        run: curl https://api.render.com/deploy/srv-d3tomek9c44c73e71740?key=nTefl6AW10o
+        run: 
+          echo "https://frontend-backend-ghactions-backend.onrender.com"
+          curl https://api.render.com/deploy/srv-d3tomek9c44c73e71740?key=nTefl6AW10o
 
       
