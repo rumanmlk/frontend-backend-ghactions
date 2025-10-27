@@ -15,6 +15,8 @@ env:
   IMAGE_NAME: ${{ github.repository }}
   TAG_FRONTEND: frontend-v09
   TAG_BACKEND: backend-v09
+  REACT_APP_API_URL: "https://frontend-backend-ghactions-backend.onrender.com"
+  
 
 jobs:
   build:
