@@ -30,7 +30,7 @@ const TodoForm = ({ saveTodo }) => {
         <Input
           id="title"
           name="title"
-          placeholder="Enter a title"
+          placeholder="Enter a huge title"
           type="text"
           value={title}
           onChange={onTitleChange}

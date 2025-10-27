@@ -96,9 +96,7 @@ jobs:
         run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
         
       - name: Render Deploy Backend
-        run: |
-          echo "${{env.BACKEND_URL}}"
-          curl "${{secrets.BACKEND_HOOK}}"
+        run: curl "${{secrets.BACKEND_HOOK}}"
 
       ################FRONTEND####################################
 
@@ -141,9 +139,7 @@ jobs:
 
 
       - name: Render Deploy Frontend
-        run: |
-          echo "${{env.FRONTEND_URL}}"
-          curl ${{secrets.FRONTEND_HOOK}}
+        run:  curl ${{secrets.FRONTEND_HOOK}}
 
      
 
