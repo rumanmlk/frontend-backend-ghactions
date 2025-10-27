@@ -41,7 +41,7 @@ const TodoForm = ({ saveTodo }) => {
         <Input
           id="description"
           name="description"
-          placeholder="Enter a long Description"
+          placeholder="Enter a long n long Description"
           type="textarea"
           value={description}
           onChange={onDescriptionChange}
