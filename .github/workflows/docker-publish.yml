@@ -78,7 +78,7 @@ jobs:
         run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
         
       - name: Render Deploy Backend
-        run: curl "https://api.render.com/deploy/${{secrets.BACKEND_SERVICE_ID}}?key=nTefl6AW10o&imgURL=docker.io/${{env.IMAGE_NAME}}:${{ github.event.inputs.tag_backend }}"
+        run: curl "https://api.render.com/deploy/${{secrets.BACKEND_SERVICE_ID}}?key=nTefl6AW10o&imgURL=docker.io/${{env.IMAGE_NAME}}-backend:${{ github.event.inputs.tag_backend }}"
 
 
       - name: Extract Backend URL
@@ -124,4 +124,4 @@ jobs:
         run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
 
       - name: Render Deploy Frontend
-        run:  curl "https://api.render.com/deploy/${{secrets.FRONTEND_SERVICE_ID}}?key=GUdiiHbPF2k&imgURL=docker.io/${{env.IMAGE_NAME}}:${{ github.event.inputs.tag_frontend }}"
+        run:  curl "https://api.render.com/deploy/${{secrets.FRONTEND_SERVICE_ID}}?key=GUdiiHbPF2k&imgURL=docker.io/${{env.IMAGE_NAME}}-frontend:${{ github.event.inputs.tag_frontend }}"
