@@ -8,13 +8,17 @@ name: Docker
 on:
   workflow_dispatch:
     inputs:
-      name:
+      tag_frontend:
         type: string
-        description: Enter tag name
-      message:
+        description: Enter frontend image tag name
         required: true
-      environment:
-        type: environment
+        default: latest
+      tag_backend:
+        type: string
+        description: Enter backend image tag name
+        required: true
+        default: latest
+
     
 
 env:
@@ -45,9 +49,7 @@ jobs:
 
 
       - name: Send greeting
-        run: echo "${{ github.event.inputs.message }} ${{ github.event.inputs.name }}"
-
-
+        run: echo "${{ github.event.inputs.tag_frontend }} ${{ github.event.inputs.tag_backend }}"
 
 
 
