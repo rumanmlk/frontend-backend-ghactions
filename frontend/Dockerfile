@@ -27,9 +27,12 @@ ENV NODE_OPTIONS=--openssl-legacy-provider
 COPY package*.json ./
 RUN npm install
 
+ARG REACT_APP_API_URL
+
+ENV REACT_APP_API_URL = $REACT_APP_API_URL
+
 # Copy all files and build the app
 COPY . .
-RUN echo "Backend URL is $REACT_APP_API_URL"
 RUN npm run build
 
 # ---------- Production Stage ----------
