@@ -141,7 +141,7 @@ jobs:
           --header 'authorization: Bearer rnd_UgTGwChXEdwL1WXYtDlYL21i1mlE') >> $GITHUB_OUTPUT
         
       - name: echo backend url
-        run: echo "${{steps.url_backend.outputs}}"
+        run: echo "${{steps.url_backend.outputs.response.serviceDetails.url}}"
 
 
       ################FRONTEND####################################
