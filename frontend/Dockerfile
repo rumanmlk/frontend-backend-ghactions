@@ -27,9 +27,9 @@ ENV NODE_OPTIONS=--openssl-legacy-provider
 COPY package*.json ./
 RUN npm install
 
-ARG REACT_APP_API_URL = "https://frontend-backend-ghactions-backend.onrender.com"
+ARG REACT_APP_API_URL = https://frontend-backend-ghactions-backend.onrender.com
 
-ENV REACT_APP_API_URL = "https://frontend-backend-ghactions-backend.onrender.com"
+ENV REACT_APP_API_URL = https://frontend-backend-ghactions-backend.onrender.com
 
 # RUN echo $REACT_APP_API_URL
 
