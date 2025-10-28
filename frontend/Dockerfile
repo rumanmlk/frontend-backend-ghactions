@@ -33,6 +33,7 @@ ENV REACT_APP_API_URL = $REACT_APP_API_URL
 
 # Copy all files and build the app
 COPY . .
+RUN echo "Backend URL is $REACT_APP_API_URL"
 RUN npm run build
 
 # ---------- Production Stage ----------
