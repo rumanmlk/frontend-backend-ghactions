@@ -15,6 +15,7 @@ env:
   IMAGE_NAME: ${{ github.repository }}
   TAG_FRONTEND: frontend-v09
   TAG_BACKEND: backend-v09
+
   
 
 jobs:
@@ -32,6 +33,26 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Input Docker Image Tag Name
+        id: interactive-inputs
+        uses: boasihq/interactive-inputs@v2
+        with:
+          ngrok-authtoken: cr_34hxPDkHriZRuI5cerPwZ5ieN3C
+          interactive: |
+            fields:
+            - label: tagName # Required
+                properties:
+                  display: Tag Name # Optional: if not specified, the title for the field will not be displayed on the portal
+                  type: text # Required
+                  description: The name of the user # Optional: If not added, "i" won't be on the portal for the field
+                  placeholder: Enter your image tag name # Optional: If not added, the placeholder won't be displayed on the portal
+                  defaultValue: latest # Optional: If not added, the default value won't be displayed on the portal
+
+      - name: Image Name
+        run : echo "${{steps.interactive-inputs.outputs}}"
+
+
 
       # - name: 'Create env file'
       #   run: |
@@ -138,9 +159,7 @@ jobs:
           --url https://api.render.com/v1/services/srv-d3tomek9c44c73e71740 \
           --header 'accept: application/json' \
           --header 'authorization: Bearer rnd_UgTGwChXEdwL1WXYtDlYL21i1mlE')
-
           backend_url=$(echo "$response" | jq -r '.serviceDetails.url')
-
           echo "backend_url=$backend_url" >> $GITHUB_OUTPUT
 
       - name: Use Backend URL
@@ -149,7 +168,6 @@ jobs:
 
 
       ################FRONTEND####################################
-
 
 
 
