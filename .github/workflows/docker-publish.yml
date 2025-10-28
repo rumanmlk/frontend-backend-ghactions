@@ -148,7 +148,7 @@ jobs:
         uses: sergeysova/jq-action@v2
         id: serviceDetails
         with:
-          cmd: 'jq .serviceDetails $GITHUB_OUTPUT -r'
+          cmd: srv=$(echo "$json" | jq -r '.serviceDetails')
           multiline: true
 
       - name: Show my serviceDetails
