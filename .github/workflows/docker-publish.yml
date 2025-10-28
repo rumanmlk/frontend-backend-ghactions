@@ -135,10 +135,10 @@ jobs:
       - name: Extract Backend URL
         id: url_backend
         run: |
-          response = $(curl --request GET \
+          curl --request GET \
           --url https://api.render.com/v1/services/srv-d3tomek9c44c73e71740 \
           --header 'accept: application/json' \
-          --header 'authorization: Bearer rnd_UgTGwChXEdwL1WXYtDlYL21i1mlE')
+          --header 'authorization: Bearer rnd_UgTGwChXEdwL1WXYtDlYL21i1mlE'
         
       - name: echo backend url
         run: echo ${{steps.url_backend.outputs.response}}
