@@ -61,7 +61,9 @@ jobs:
         run: tree
 
       - name: "File Structure"
-        run: ls -a
+        run: |
+          cd ./frontend
+          ls -a
 
       # Install the cosign tool except on PR
       # https://github.com/sigstore/cosign-installer
