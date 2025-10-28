@@ -46,6 +46,7 @@ jobs:
       - name: env setup
         run: |
           export REACT_APP_API_URL="https://frontend-backend-ghactions-backend.onrender.com"
+          export -p
 
 
       # - name: 'Create env dep file'
