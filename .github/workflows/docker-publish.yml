@@ -142,12 +142,17 @@ jobs:
         
       - name: echo backend response
         run: echo "${{steps.url_backend.outputs.response}}"
-      
-      - name: echo backend url
-        run: |
-          url=$(${{steps.url_backend.outputs.response}}| jq -r '.serviceDetails.url');
-          echo "url=$url" >> $GITHUB_OUTPUT
 
+
+      - name: Extract serviceDetails from response
+        uses: sergeysova/jq-action@v2
+        id: serviceDetails
+        with:
+          cmd: 'jq .serviceDetails ${{steps.url_backend.outputs.response}} -r'
+          multiline: true
+
+      - name: Show my serviceDetails
+        run: 'echo "serviceDetails ${{ steps.serviceDetails.outputs.value }}"'
 
       ################FRONTEND####################################
 
