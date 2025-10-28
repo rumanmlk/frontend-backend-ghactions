@@ -34,14 +34,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: 'Create env file'
+      # - name: 'Create env file'
+      #   run: |
+      #     cd ./frontend
+      #     touch .env
+      #     echo 'REACT_APP_API_URL="https://frontend-backend-ghactions-backend.onrender.com"' >> .env
+      #     cat .env
+      #     more .env
+      #     realpath .env
+
+      - name: env setup
         run: |
-          cd ./frontend
-          touch .env
-          echo 'REACT_APP_API_URL="https://frontend-backend-ghactions-backend.onrender.com"' >> .env
-          cat .env
-          more .env
-          realpath .env
+          export REACT_APP_API_URL="https://frontend-backend-ghactions-backend.onrender.com"
 
 
       # - name: 'Create env dep file'
