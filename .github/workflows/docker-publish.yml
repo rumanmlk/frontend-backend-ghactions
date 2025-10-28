@@ -148,19 +148,6 @@ jobs:
         run: echo "The backend URL is ${{ steps.url_backend.outputs.backend_url }}"
 
 
-      # - name: echo backend response
-      #   run: echo "${{steps.url_backend.outputs.response}}"
-
-
-      # - name: Extract serviceDetails from response
-      #   uses: sergeysova/jq-action@v2
-      #   id: serviceDetails
-      #   with:
-      #     cmd: srv=$(echo "${{steps.url_backend.outputs.response}}" | jq -r '.serviceDetails')
-      #     multiline: true
-
-      # - name: Show my serviceDetails
-      #   run: 'echo "serviceDetails ${{ steps.serviceDetails.outputs.value }}"'
 
       ################FRONTEND####################################
 
