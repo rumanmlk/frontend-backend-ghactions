@@ -34,12 +34,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: 'Create env file'
+        run: |
+          cd ./frontend
+          touch .env
+          echo 'REACT_APP_API_URL="https://frontend-backend-ghactions-backend.onrender.com"' >> .env
+          cat .env
+          more .env
+          realpath .env
+
 
       - name: 'Create env dep file'
         run: |
           cd ./frontend
           touch .env.development
-          echo 'REACT_APP_API_URL="https://frontend-backend-ghactions-backend.onrender.com"' > .env.development
+          echo 'REACT_APP_API_URL="https://frontend-backend-ghactions-backend.onrender.com"' >> .env.development
           cat .env.development
           more .env.development
           realpath .env.development
@@ -48,7 +57,7 @@ jobs:
         run: |
           cd ./frontend
           touch .env.production
-          echo 'REACT_APP_API_URL="https://frontend-backend-ghactions-backend.onrender.com"' > .env.production
+          echo 'REACT_APP_API_URL="https://frontend-backend-ghactions-backend.onrender.com"' >> .env.production
           cat .env.production
           more .env.production
           realpath .env.production
