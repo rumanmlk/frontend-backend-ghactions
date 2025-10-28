@@ -138,8 +138,7 @@ jobs:
           response=$(curl --request GET \
           --url https://api.render.com/v1/services/srv-d3tomek9c44c73e71740 \
           --header 'accept: application/json' \
-          --header 'authorization: Bearer rnd_UgTGwChXEdwL1WXYtDlYL21i1mlE');
-            echo "response=$response"  >> $GITHUB_OUTPUT
+          --header 'authorization: Bearer rnd_UgTGwChXEdwL1WXYtDlYL21i1mlE'); echo "response=$response" >> $GITHUB_OUTPUT
         
       - name: echo backend url
         run: echo "${{steps.url_backend.outputs.response.serviceDetails.url}}"
