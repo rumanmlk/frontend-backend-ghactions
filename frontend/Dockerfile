@@ -31,8 +31,6 @@ RUN npm install
 
 # ENV REACT_APP_API_URL = ${{REACT_APP_API_URL}}
 
-RUN echo ${REACT_APP_API_URL}
-RUN echo ${{REACT_APP_API_URL}}
 RUN echo $REACT_APP_API_URL
 
 
