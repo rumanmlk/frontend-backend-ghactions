@@ -141,7 +141,7 @@ jobs:
           --header 'authorization: Bearer rnd_UgTGwChXEdwL1WXYtDlYL21i1mlE'
         
       - name: echo backend url
-        run: echo "${{steps.url_backend.outputs.serviceDetails.url}}"
+        run: echo "${{steps.url_backend.outputs}}"
 
 
       ################FRONTEND####################################
