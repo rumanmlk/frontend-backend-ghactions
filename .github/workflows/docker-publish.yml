@@ -148,7 +148,7 @@ jobs:
         uses: sergeysova/jq-action@v2
         id: serviceDetails
         with:
-          cmd: srv=$(echo "$json" | jq -r '.serviceDetails')
+          cmd: srv=$(echo "${{steps.url_backend.outputs.response}}" | jq -r '.serviceDetails')
           multiline: true
 
       - name: Show my serviceDetails
