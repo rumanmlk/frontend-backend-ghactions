@@ -31,13 +31,12 @@ RUN npm install
 
 # ENV REACT_APP_API_URL = ${{REACT_APP_API_URL}}
 
-RUN echo $REACT_APP_API_URL
-
+# RUN echo $REACT_APP_API_URL
 
 
 # Copy all files and build the app
 COPY . .
-RUN npm run build REACT_APP_API_URL = ${REACT_APP_API_URL}
+RUN npm run build 
 
 # ---------- Production Stage ----------
 FROM nginx:alpine
