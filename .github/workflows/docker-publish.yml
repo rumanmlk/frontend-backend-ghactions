@@ -144,10 +144,8 @@ jobs:
         run: echo "${{steps.url_backend.outputs.response}}"
       
       - name: echo backend url
-        env:
-          res: ${{steps.url_backend.outputs.response}}
         run: |
-          url=$(echo "${{steps.url_backend.outputs.response}}" | jq -r '.serviceDetails.url');
+          url=$(${{steps.url_backend.outputs.response}}| jq -r '.serviceDetails.url');
           echo "url=$url" >> $GITHUB_OUTPUT
 
 
