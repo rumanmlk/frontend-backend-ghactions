@@ -26,11 +26,11 @@ const TodoForm = ({ saveTodo }) => {
   return (
     <Form>
       <FormGroup>
-        <Label for="title">The Title</Label>
+        <Label for="title">Title</Label>
         <Input
           id="title"
           name="title"
-          placeholder="Enter a title"
+          placeholder="Enter a title for version 9"
           type="text"
           value={title}
           onChange={onTitleChange}
@@ -41,7 +41,7 @@ const TodoForm = ({ saveTodo }) => {
         <Input
           id="description"
           name="description"
-          placeholder="Enter a Description"
+          placeholder="Enter a Description for version 9"
           type="textarea"
           value={description}
           onChange={onDescriptionChange}
