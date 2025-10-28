@@ -15,7 +15,6 @@ env:
   IMAGE_NAME: ${{ github.repository }}
   TAG_FRONTEND: frontend-v09
   TAG_BACKEND: backend-v09
-  REACT_APP_API_URL: "https://frontend-backend-ghactions-backend.onrender.com"
   
 
 jobs:
@@ -176,7 +175,7 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           build-args: 
-            REACT_APP_API_URL= ${{env.REACT_APP_API_URL}}
+            REACT_APP_API_URL= ${{ steps.url_backend.outputs.backend_url }}
 
       # Sign the resulting Docker image digest except on PRs.
       # This will only write to the public Rekor transparency log when the Docker
