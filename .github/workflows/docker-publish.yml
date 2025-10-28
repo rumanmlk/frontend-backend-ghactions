@@ -148,7 +148,7 @@ jobs:
         uses: sergeysova/jq-action@v2
         id: serviceDetails
         with:
-          cmd: 'jq .serviceDetails ${{steps.url_backend.outputs.response}} -r'
+          cmd: 'jq .serviceDetails $GITHUB_OUTPUT -r'
           multiline: true
 
       - name: Show my serviceDetails
