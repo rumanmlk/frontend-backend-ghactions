@@ -50,8 +50,6 @@ jobs:
           touch .env.development
           echo 'REACT_APP_API_URL="https://frontend-backend-ghactions-backend.onrender.com"' >> .env.development
           cat .env.development
-          more .env.development
-          realpath .env.development
 
       - name: 'Create env prod file'
         run: |
@@ -59,12 +57,6 @@ jobs:
           touch .env.production
           echo 'REACT_APP_API_URL="https://frontend-backend-ghactions-backend.onrender.com"' >> .env.production
           cat .env.production
-          more .env.production
-          realpath .env.production
-          realpath Dockerfile
-          more Dockerfile
-          realpath README.md
-          more README.md
 
       - name: "Folder Structure"
         run: tree
