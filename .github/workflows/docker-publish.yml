@@ -140,8 +140,11 @@ jobs:
           --header 'accept: application/json' \
           --header 'authorization: Bearer rnd_UgTGwChXEdwL1WXYtDlYL21i1mlE'); echo "response=$response" >> $GITHUB_OUTPUT
         
-      - name: echo backend url
+      - name: echo backend response
         run: echo "${{steps.url_backend.outputs.response}}"
+      
+      - name: echo backend url
+        run: echo "${{steps.url_backend.outputs.response.serviceDetails}}"
 
 
       ################FRONTEND####################################
