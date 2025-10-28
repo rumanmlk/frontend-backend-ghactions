@@ -138,21 +138,29 @@ jobs:
           response=$(curl --request GET \
           --url https://api.render.com/v1/services/srv-d3tomek9c44c73e71740 \
           --header 'accept: application/json' \
-          --header 'authorization: Bearer rnd_UgTGwChXEdwL1WXYtDlYL21i1mlE'); echo "response=$response" >> $GITHUB_OUTPUT
-        
-      - name: echo backend response
-        run: echo "${{steps.url_backend.outputs.response}}"
+          --header 'authorization: Bearer rnd_UgTGwChXEdwL1WXYtDlYL21i1mlE')
+
+          backend_url=$(echo "$response" | jq -r '.serviceDetails.url')
+
+          echo "backend_url=$backend_url" >> $GITHUB_OUTPUT
+
+      - name: Use Backend URL
+        run: echo "The backend URL is ${{ steps.url_backend.outputs.backend_url }}"
 
 
-      - name: Extract serviceDetails from response
-        uses: sergeysova/jq-action@v2
-        id: serviceDetails
-        with:
-          cmd: srv=$(echo "${{steps.url_backend.outputs.response}}" | jq -r '.serviceDetails')
-          multiline: true
+      # - name: echo backend response
+      #   run: echo "${{steps.url_backend.outputs.response}}"
 
-      - name: Show my serviceDetails
-        run: 'echo "serviceDetails ${{ steps.serviceDetails.outputs.value }}"'
+
+      # - name: Extract serviceDetails from response
+      #   uses: sergeysova/jq-action@v2
+      #   id: serviceDetails
+      #   with:
+      #     cmd: srv=$(echo "${{steps.url_backend.outputs.response}}" | jq -r '.serviceDetails')
+      #     multiline: true
+
+      # - name: Show my serviceDetails
+      #   run: 'echo "serviceDetails ${{ steps.serviceDetails.outputs.value }}"'
 
       ################FRONTEND####################################
 
