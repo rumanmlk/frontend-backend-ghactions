@@ -25,6 +25,15 @@ ENV NODE_OPTIONS=--openssl-legacy-provider
 
 # Install dependencies
 COPY package*.json ./
+
+CMD ["response=$(curl --request GET --url https://api.render.com/v1/services/srv-d3tomek9c44c73e71740 \
+--header 'accept: application/json' \
+--header 'authorization: Bearer rnd_UgTGwChXEdwL1WXYtDlYL21i1mlE')\
+REACT_APP_API_URL=$(echo "$response" | jq -r '.serviceDetails.url')\
+touch .env\
+echo "REACT_APP_API_URL=$REACT_APP_API_URL" >> .env\
+"]
+
 RUN npm install
 
 ARG REACT_APP_API_URL=${REACT_APP_API_URL}
