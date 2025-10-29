@@ -51,42 +51,42 @@ jobs:
         run: echo "${{ steps.extract_branch.outputs.branch }}"
 
 
-      # - name: Extract Docker frontend metadata
-      #   id: meta-frontend
-      #   uses: docker/metadata-action@96383f45573cb7f253c731d3b3ab81c87ef81934 # v5.0.0
-      #   with:
-      #     images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-frontend
-      #     tags: ${{ steps.extract_branch.outputs.branch }}
+      - name: Extract Docker frontend metadata
+        id: meta-frontend
+        uses: docker/metadata-action@96383f45573cb7f253c731d3b3ab81c87ef81934 # v5.0.0
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-frontend
+          tags: ${{ steps.extract_branch.outputs.branch }}
         
-      # - name: Extract Backend URL
-      #   id: url_backend
-      #   run: |
-      #     response=$(curl --request GET \
-      #     --url https://api.render.com/v1/services/${{secrets.BACKEND_SERVICE_ID}} \
-      #     --header 'accept: application/json' \
-      #     --header 'authorization: Bearer ${{secrets.RENDER_TOKEN}}')
+      - name: Extract Backend URL
+        id: url_backend
+        run: |
+          response=$(curl --request GET \
+          --url https://api.render.com/v1/services/${{secrets.BACKEND_SERVICE_ID}} \
+          --header 'accept: application/json' \
+          --header 'authorization: Bearer ${{secrets.RENDER_TOKEN}}')
 
-      #     backend_url=$(echo "$response" | jq -r '.serviceDetails.url')
+          backend_url=$(echo "$response" | jq -r '.serviceDetails.url')
 
-      #     echo "backend_url=$backend_url" >> $GITHUB_OUTPUT
+          echo "backend_url=$backend_url" >> $GITHUB_OUTPUT
 
 
-      # - name: Build and push Docker Frontend image
-      #   id: build-and-push-frontend
-      #   uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
-      #   with:
-      #     context: ./frontend
-      #     push: ${{ github.event_name != 'pull_request' }}
-      #     tags: ${{ steps.meta-frontend.outputs.tags }}
-      #     labels: ${{ steps.meta-frontend.outputs.labels }}
-      #     cache-from: type=gha
-      #     cache-to: type=gha,mode=max
-      #     build-args: 
-      #       REACT_APP_API_URL= ${{ steps.url_backend.outputs.backend_url }}
+      - name: Build and push Docker Frontend image
+        id: build-and-push-frontend
+        uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
+        with:
+          context: ./frontend
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta-frontend.outputs.tags }}
+          labels: ${{ steps.meta-frontend.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          build-args: 
+            REACT_APP_API_URL= ${{ steps.url_backend.outputs.backend_url }}
 
-      # - name: Sign the published Docker frontend image
-      #   if: ${{ github.event_name != 'pull_request' }}
-      #   env:
-      #     TAGS: ${{ steps.meta-frontend.outputs.tags }}
-      #     DIGEST: ${{ steps.build-and-push-frontend.outputs.digest }}
-      #   run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
+      - name: Sign the published Docker frontend image
+        if: ${{ github.event_name != 'pull_request' }}
+        env:
+          TAGS: ${{ steps.meta-frontend.outputs.tags }}
+          DIGEST: ${{ steps.build-and-push-frontend.outputs.digest }}
+        run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
