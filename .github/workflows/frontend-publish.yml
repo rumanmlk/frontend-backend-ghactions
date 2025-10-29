@@ -48,7 +48,7 @@ jobs:
         run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
 
       - name: Output tag name
-        run: echo "${{ steps.extract_branch.outputs.branch }}"
+        run: echo "${{ steps.extract_branch.outputs.branch }}-${{github.run_number}}"
 
 
       - name: Extract Docker frontend metadata
