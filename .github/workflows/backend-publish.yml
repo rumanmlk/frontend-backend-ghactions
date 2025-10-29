@@ -21,12 +21,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       
-      - uses: gliech/create-github-secret-action@v1
-        with:
-          name: FRONT_DOOR_PASSWORD
-          value: Eternia
-          pa_token: ${{ secrets.PA_TOKEN }}
-
 
       - name: Extract Backend URL
         id: url_backend
