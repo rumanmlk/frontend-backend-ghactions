@@ -48,7 +48,7 @@ jobs:
         run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
 
       - name: Output tag name
-        run: echo "${{ steps.extract_branch.outputs.branch }}-${{github.run_number}}"
+        run: echo "${{ steps.extract_branch.outputs.branch }}-v${{github.run_number}}"
 
 
       - name: Extract Docker frontend metadata
@@ -56,7 +56,7 @@ jobs:
         uses: docker/metadata-action@96383f45573cb7f253c731d3b3ab81c87ef81934 # v5.0.0
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-frontend
-          tags: ${{ steps.extract_branch.outputs.branch }}-${{github.run_number}}
+          tags: ${{ steps.extract_branch.outputs.branch }}-v${{github.run_number}}
         
       - name: Extract Backend URL
         id: url_backend
