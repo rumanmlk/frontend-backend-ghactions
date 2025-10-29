@@ -66,8 +66,10 @@ jobs:
           --header 'accept: application/json' \
           --header 'authorization: Bearer ${{secrets.RENDER_TOKEN}}')
 
-          REACT_APP_API_URL=$(echo "$response" | jq -r '.serviceDetails.url')
-          echo "REACT_APP_API_URL=$REACT_APP_API_URL" >> $GITHUB_OUTPUT
+          backend_url=$(echo "$response" | jq -r '.serviceDetails.url')
+
+          echo "backend_url=$backend_url" >> $GITHUB_OUTPUT
+
 
       - name: Build and push Docker Frontend image
         id: build-and-push-frontend
@@ -80,7 +82,7 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           build-args: 
-            REACT_APP_API_URL=${{ steps.url_backend.outputs.backend_url }}
+            REACT_APP_API_URL= ${{ steps.url_backend.outputs.backend_url }}
 
       - name: Sign the published Docker frontend image
         if: ${{ github.event_name != 'pull_request' }}
