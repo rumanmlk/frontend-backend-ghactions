@@ -41,5 +41,31 @@ jobs:
 
       ########################FRONTEND####################################
 
+      - name: Extract Backend URL
+        id: url_backend
+        run: |
+          response=$(curl --request GET \
+          --url https://api.render.com/v1/services/${{secrets.BACKEND_SERVICE_ID}} \
+          --header 'accept: application/json' \
+          --header 'authorization: Bearer ${{secrets.RENDER_TOKEN}}')
+
+          backend_url=$(echo "$response" | jq -r '.serviceDetails.url')
+
+          echo "backend_url=$backend_url" >> $GITHUB_OUTPUT
+
+
+      - name: REACT_APP_API_URL Env var in Render
+        run: |
+          curl --request PUT \
+          --url https://api.render.com/v1/services/${{secrets.FRONTEND_SERVICE_ID}}/env-vars/REACT_APP_API_URL \
+          --header 'accept: application/json' \
+          --header 'authorization: Bearer ${{secrets.RENDER_TOKEN}}' \
+          --header 'content-type: application/json' \
+          --data '
+            {
+              "value": "${{ steps.url_backend.outputs.backend_url }}"
+            }
+            '
+
       - name: Render Deploy Frontend
         run:  curl "https://api.render.com/deploy/${{secrets.FRONTEND_SERVICE_ID}}?key=GUdiiHbPF2k&imgURL=docker.io/${{env.IMAGE_NAME}}-frontend:${{ github.event.inputs.tag_frontend }}"
