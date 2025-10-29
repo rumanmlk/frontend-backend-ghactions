@@ -41,6 +41,15 @@ jobs:
 
        ########################BACKEND######################################
 
+      - name: Extract branch name
+        id: extract_branch
+        shell: bash
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+
+      - name: Output tag name
+        run: echo "${{ steps.extract_branch.outputs.branch }}"
+
+
       - name: Extract Docker backend metadata
         id: meta-backend
         uses: docker/metadata-action@96383f45573cb7f253c731d3b3ab81c87ef81934 # v5.0.0
