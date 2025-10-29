@@ -1,0 +1,45 @@
+name: Render-Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag_frontend:
+        type: string
+        description: Enter frontend image tag name
+        required: true
+        default: latest
+      tag_backend:
+        type: string
+        description: Enter backend image tag name
+        required: true
+        default: latest
+
+env:
+  REGISTRY: docker.io
+  IMAGE_NAME: ${{ github.repository }}
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+      deployments: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+
+       ########################BACKEND######################################
+ 
+      - name: Render Deploy Backend
+        run: curl "https://api.render.com/deploy/${{secrets.BACKEND_SERVICE_ID}}?key=nTefl6AW10o&imgURL=docker.io/${{env.IMAGE_NAME}}-backend:${{ github.event.inputs.tag_backend }}"
+
+
+      ########################FRONTEND####################################
+
+      - name: Render Deploy Frontend
+        run:  curl "https://api.render.com/deploy/${{secrets.FRONTEND_SERVICE_ID}}?key=GUdiiHbPF2k&imgURL=docker.io/${{env.IMAGE_NAME}}-frontend:${{ github.event.inputs.tag_frontend }}"
