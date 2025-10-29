@@ -42,12 +42,12 @@ jobs:
 
       ################FRONTEND####################################
 
-      - name: Extract branch name
+      - name: Extract Branch Name
         id: extract_branch
         shell: bash
         run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
 
-      - name: Output tag name
+      - name: Output Frontend Tag Name
         run: echo "${{ steps.extract_branch.outputs.branch }}-v${{github.run_number}}"
 
 
