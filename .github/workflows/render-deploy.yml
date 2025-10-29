@@ -5,12 +5,12 @@ on:
     inputs:
       tag_frontend:
         type: string
-        description: Enter frontend image tag name
+        description: Enter Frontend Image Tag Name
         required: true
         default: latest
       tag_backend:
         type: string
-        description: Enter backend image tag name
+        description: Enter Backend Image Tag Name
         required: true
         default: latest
 
