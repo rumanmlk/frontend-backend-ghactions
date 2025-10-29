@@ -57,7 +57,7 @@ jobs:
       - name: REACT_APP_API_URL Env var in Render
         run: |
           curl --request PUT \
-          --url https://api.render.com/v1/services/${{secrets.FRONTEND_SERVICE_ID}}/env-vars/REACT_APP_API_URL \
+          --url https://api.render.com/0v1/services/${{secrets.FRONTEND_SERVICE_ID}}/env-vars/REACT_APP_API_URL \
           --header 'accept: application/json' \
           --header 'authorization: Bearer ${{secrets.RENDER_TOKEN}}' \
           --header 'content-type: application/json' \
