@@ -20,6 +20,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      
+      - uses: gliech/create-github-secret-action@v1
+        with:
+          name: FRONT_DOOR_PASSWORD
+          value: Eternia
+          pa_token: ${{ secrets.PA_TOKEN }}
 
 
       - name: Extract Backend URL
@@ -33,13 +39,12 @@ jobs:
           REACT_APP_API_URL=$(echo "$response" | jq -r '.serviceDetails.url')
           echo "REACT_APP_API_URL=$REACT_APP_API_URL" >> $GITHUB_OUTPUT
 
-          cd ./frontend
-          touch .env
-          echo 'REACT_APP_API_URL="$REACT_APP_API_URL"' >> .env
-
-        
-
-
+      - name: Make Backend Url as Secret
+        uses: gliech/create-github-secret-action@v1
+        with:
+            name: REACT_APP_API_URL
+            value: ${{ steps.url_backend.outputs.backend_url }}
+            pa_token: ${{ secrets.PA_TOKEN }}
 
       - name: Install cosign
         if: github.event_name != 'pull_request'
