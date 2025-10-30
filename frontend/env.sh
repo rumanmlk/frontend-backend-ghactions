@@ -1,7 +1,7 @@
 #!/bin/sh
 for i in $(env | grep REACT_APP_)
 do
-    key=$(echo $i | cut -d '=' -f 1)
+    key=$(echo $i | cut -d '=' -f 1-)
     value=$(echo $i | cut -d '=' -f 2-)
     echo $key=$value
     # sed All files
