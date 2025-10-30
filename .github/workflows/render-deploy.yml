@@ -57,13 +57,13 @@ jobs:
       - name: REACT_APP_API_URL Env var in Render
         run: |
           curl --request PUT \
-          --url https://api.render.com/0v1/services/${{secrets.FRONTEND_SERVICE_ID}}/env-vars/REACT_APP_API_URL \
+          --url https://api.render.com/v1/services/srv-d3ttbt49c44c73ea0h80/env-vars/REACT_APP_API_URL \
           --header 'accept: application/json' \
-          --header 'authorization: Bearer ${{secrets.RENDER_TOKEN}}' \
+          --header 'authorization: Bearer rnd_UgTGwChXEdwL1WXYtDlYL21i1mlE' \
           --header 'content-type: application/json' \
           --data '
             {
-              "value": "${{ steps.url_backend.outputs.backend_url }}"
+              "value": "https://frontend-backend-ghactions-backend.onrender.com"
             }
             '
 
