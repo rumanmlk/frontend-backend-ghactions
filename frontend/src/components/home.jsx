@@ -13,7 +13,7 @@ import {
 } from "reactstrap";
 import TodoForm from "./todo-form";
 
-const API_URL = "__REACT_APP_API_URL__";
+const API_URL = "REACT_APP_API_URL";
 
 
 const Home = () => {
